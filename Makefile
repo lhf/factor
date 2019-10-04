@@ -1,8 +1,12 @@
+# download and build factor and primes program from the NetBSD
+
 W= http://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/src/games
 G= curl -L -R -O
 CFLAGS= -Wall -Wextra -O2 -Dlint -D__dead= -DHAVE_OPENSSL
+# use this if you don't have openSSL
+CFLAGS= -Wall -Wextra -O2 -Dlint -D__dead= -Du_long="unsigned long"
 
-all:	get bin
+all:	get bin test
 
 bin:	factor primes
 
@@ -24,4 +28,8 @@ get:
 	$G $W/primes/primes.h
 	$G $W/primes/pr_tbl.c
 	$G $W/primes/spsp.c
+
+test:	bin
+	./primes 1 1000 | column
+	./factor 1234567890123456789
 
