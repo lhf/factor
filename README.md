@@ -1,2 +1,2 @@
 # factor
-Standalone Makefile for building factor and primes program from the NetBSD 
+Makefile for downloading and building factor and primes program from NetBSD
