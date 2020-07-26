@@ -12,6 +12,8 @@ bin:	factor primes
 
 factor:	factor.o pr_tbl.o
 	$(CC) -o $@ factor.o pr_tbl.o -lcrypto
+# use line below if you don't have openSSL and comment out the line above by placing an # at begin of line
+	$(CC) -o $@ factor.o pr_tbl.o
 
 primes:	primes.o pr_tbl.o pattern.o spsp.o
 	$(CC) -o $@ primes.o pr_tbl.o pattern.o spsp.o -lm
