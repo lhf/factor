@@ -11,10 +11,16 @@ all:	get bin test
 bin:	factor primes
 
 factor:	factor.o pr_tbl.o
-	$(CC) -o $@ factor.o pr_tbl.o -lcrypto
+	$(CC) -o $@ factor.o pr_tbl.o #-lcrypto
 
 primes:	primes.o pr_tbl.o pattern.o spsp.o
 	$(CC) -o $@ primes.o pr_tbl.o pattern.o spsp.o -lm
+
+factor.o: factor.c primes.h
+pattern.o: pattern.c
+pr_tbl.o: pr_tbl.c primes.h
+primes.o: primes.c primes.h
+spsp.o: spsp.c primes.h
 
 clean:
 	-rm -f factor primes factor.o pattern.o pr_tbl.o primes.o spsp.o
